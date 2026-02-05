@@ -1644,7 +1644,11 @@ void idSaveGame::WriteFloatArr( const float * arr, int num ) {
 
 	int size = num * sizeof(float);
 	float * fArr;
+#if !defined(WIN32) //karin: alloca in stack on non-win
+	fArr = (float*)alloca( size );
+#else
 	fArr = (float*)_malloca( size );
+#endif
 	memcpy(fArr, arr, size);
 
 	LittleRevBytes( fArr, sizeof(float), num );
