@@ -2124,7 +2124,13 @@ void idMoveableItem::Restore( idRestoreGame *savefile ) {
 	savefile->ReadInt( collideFrobTimer ); //  int collideFrobTimer
 
 
+#if !defined(_WIN32) //karin: write int, but read long here. long is 4 bytes in win64 only, others 64-bits is 8bytes
+	int i_spawnTime;
+	savefile->ReadInt( i_spawnTime ); //  int spawnTime
+	spawnTime = i_spawnTime;
+#else
 	savefile->ReadLong( spawnTime ); //  int spawnTime
+#endif
 	savefile->ReadBool( showItemLine ); //  bool showItemLine
 	savefile->ReadInt( itemLineHandle ); //  int itemLineHandle
 	savefile->ReadVec3( itemLineColor ); //  idVec3 itemLineColor
