@@ -252,7 +252,7 @@ void SG_DumpStack() {
 }
 #endif
 
-void SG_Warn( const char* fmt, ... ) id_attribute((format(printf,2,3))) {
+void SG_Warn( const char* fmt, ... ) id_attribute((format(printf,1,2))) {
 	va_list args;
 	va_start(args, fmt);
 
@@ -270,7 +270,7 @@ void SG_Warn( const char* fmt, ... ) id_attribute((format(printf,2,3))) {
 	va_end(args);
 }
 
-void SG_Error( const char *fmt, ... ) id_attribute((format(printf,2,3))) {
+void SG_Error( const char *fmt, ... ) id_attribute((format(printf,1,2))) {
 	va_list args;
 	va_start(args, fmt);
 
@@ -287,7 +287,7 @@ void SG_Error( const char *fmt, ... ) id_attribute((format(printf,2,3))) {
 }
 
 
-void SG_Print( const char *fmt, ... ) id_attribute((format(printf,2,3))) {
+void SG_Print( const char *fmt, ... ) id_attribute((format(printf,1,2))) {
 	va_list args;
 	va_start(args, fmt);
 	gameLocal.Printf(fmt, args);
